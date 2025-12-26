@@ -107,4 +107,4 @@ To deploy the application to Cloudflare Pages:
 pnpm run deploy
 ```
 
-Make sure you have the necessary permissions and Wrangler is correctly configured for your Cloudflare aaccount
+Make sure you have the necessary permissions and Wrangler is correctly configured for your Cloudflare account.
