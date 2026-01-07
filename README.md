@@ -1,54 +1,161 @@
 [![Bolt.new: AI-Powered Full-Stack Web Development in the Browser](./public/social_preview_index.jpg)](https://bolt.new)
+#
+Navigation Menu
+bolt.new
 
-# Bolt.new: AI-Powered Full-Stack Web Development in the Browser
+Code
+Pull requests
+8
+bolt.new/
+yosiwizman
+yosiwizman
+2 days ago
+Cannot retrieve ahead/behind information for this branch.
+bolt.new/
+Name	Last commit date
+.github
+2 days ago
+.husky
+2 years ago
+app
+2 days ago
+functions
+2 days ago
+icons
+2 days ago
+public
+2 days ago
+types
+2 years ago
+.editorconfig
+2 years ago
+.gitattributes
+2 days ago
+.gitignore
+2 years ago
+.prettierignore
+2 years ago
+.prettierrc
+2 years ago
+.tool-versions
+2 years ago
+CONTRIBUTING.md
+2 years ago
+LICENSE
+2 years ago
+README.md
+2 days ago
+bindings.sh
+2 years ago
+eslint.config.mjs
+2 years ago
+load-context.ts
+2 years ago
+package.json
+2 days ago
+pnpm-lock.yaml
+2 years ago
+tsconfig.json
+2 years ago
+uno.config.ts
+2 years ago
+vite.config.ts
+2 days ago
+worker-configuration.d.ts
+2 years ago
+wrangler.toml
+2 days ago
+README.md
+X Builder
+CI
 
-Bolt.new is an AI-powered web development agent that allows you to prompt, run, edit, and deploy full-stack applications directly from your browser—no local setup required. If you're here to build your own AI-powered web dev agent using the Bolt open source codebase, [click here to get started!](./CONTRIBUTING.md)
+AI-powered full-stack web development in the browser.
 
-## What Makes Bolt.new Different
+Based on Bolt.new - the open-source AI web development agent by StackBlitz.
 
-Claude, v0, etc are incredible- but you can't install packages, run backends or edit code. That’s where Bolt.new stands out:
+Production
+🚀 Live URL: https://x-builder-staging.pages.dev
 
-- **Full-Stack in the Browser**: Bolt.new integrates cutting-edge AI models with an in-browser development environment powered by **StackBlitz’s WebContainers**. This allows you to:
-  - Install and run npm tools and libraries (like Vite, Next.js, and more)
-  - Run Node.js servers
-  - Interact with third-party APIs
-  - Deploy to production from chat
-  - Share your work via a URL
+Status: Production (Cloudflare Pages)
 
-- **AI with Environment Control**: Unlike traditional dev environments where the AI can only assist in code generation, Bolt.new gives AI models **complete control** over the entire  environment including the filesystem, node server, package manager, terminal, and browser console. This empowers AI agents to handle the entire app lifecycle—from creation to deployment.
+Note: Custom domain can be added later without downtime.
 
-Whether you’re an experienced developer, a PM or designer, Bolt.new allows you to build production-grade full-stack applications with ease.
+About
+X Builder is a white-label fork of Bolt.new that allows you to prompt, run, edit, and deploy full-stack applications directly from your browser.
 
-For developers interested in building their own AI-powered development tools with WebContainers, check out the open-source Bolt codebase in this repo!
+Features
+Full-Stack in the Browser: Integrates AI models with an in-browser development environment powered by StackBlitz's WebContainers
 
-## Tips and Tricks
+Install and run npm tools and libraries (Vite, Next.js, etc.)
+Run Node.js servers
+Interact with third-party APIs
+Deploy to production from chat
+AI with Environment Control: AI models have complete control over the filesystem, node server, package manager, terminal, and browser console
 
-Here are some tips to get the most out of Bolt.new:
+Tips and Tricks
+Be specific about your stack: Mention frameworks/libraries in your initial prompt
+Use the enhance prompt icon: Refine your prompt with AI assistance before submitting
+Scaffold basics first: Establish the foundation before adding advanced features
+Batch simple instructions: Combine multiple simple tasks in one message
+Technical Notes
+MVP Publish (Cloudflare Pages)
+X Builder includes an MVP publish feature that deploys projects directly to Cloudflare Pages.
 
-- **Be specific about your stack**: If you want to use specific frameworks or libraries (like Astro, Tailwind, ShadCN, or any other popular JavaScript framework), mention them in your initial prompt to ensure Bolt scaffolds the project accordingly.
+Components:
 
-- **Use the enhance prompt icon**: Before sending your prompt, try clicking the 'enhance' icon to have the AI model help you refine your prompt, then edit the results before submitting.
+app/lib/stores/publish.ts - State management for publish status
+app/routes/api.publish.ts - API endpoint for Cloudflare Pages deployment
+app/components/workbench/PublishButton.client.tsx - UI button component
+Environment Variables (for publish to work at runtime):
 
-- **Scaffold the basics first, then add features**: Make sure the basic structure of your application is in place before diving into more advanced functionality. This helps Bolt understand the foundation of your project and ensure everything is wired up right before building out more advanced functionality.
+CLOUDFLARE_API_TOKEN - API token with Pages permissions
+CLOUDFLARE_ACCOUNT_ID - Your Cloudflare account ID
+TODO: The Cloudflare Pages Direct Upload API implementation may need adjustment based on actual API requirements for production use.
 
-- **Batch simple instructions**: Save time by combining simple instructions into one message. For example, you can ask Bolt to change the color scheme, add mobile responsiveness, and restart the dev server, all in one go saving you time and reducing API credit consumption significantly.
+Cross-Origin Isolation
+X Builder requires crossOriginIsolated to be enabled for WebContainers (SharedArrayBuffer). This is achieved via HTTP headers:
 
-## FAQs
+Cross-Origin-Opener-Policy: same-origin
+Cross-Origin-Embedder-Policy: credentialless
+These headers are set in:
 
-**Where do I sign up for a paid plan?**  
-Bolt.new is free to get started. If you need more AI tokens or want private projects, you can purchase a paid subscription in your [Bolt.new](https://bolt.new) settings, in the lower-left hand corner of the application. 
+public/_headers - Cloudflare Pages static headers
+app/entry.server.tsx - Server-side rendering
+functions/[[path]].ts - Cloudflare Pages Functions
+vite.config.ts - Development server
+To verify: Open DevTools console and check self.crossOriginIsolated === true
 
-**What happens if I hit the free usage limit?**  
-Once your free daily token limit is reached, AI interactions are paused until the next day or until you upgrade your plan.
+Development
+Prerequisites
+Node.js 20.15.1+
+pnpm 9.4.0+
+Setup
+pnpm install
+pnpm run dev
+Scripts
+pnpm run dev - Start development server
+pnpm run build - Build for production
+pnpm run lint - Run ESLint
+pnpm run typecheck - Run TypeScript checks
+pnpm test - Run tests
+Deployment
+Production deploys automatically from main branch via GitHub Actions to Cloudflare Pages.
 
-**Is Bolt in beta?**  
-Yes, Bolt.new is in beta, and we are actively improving it based on feedback.
+Required GitHub Secrets:
 
-**How can I report Bolt.new issues?**  
-Check out the [Issues section](https://github.com/bolt.new/issues) to report an issue or request a new feature. Please use the search feature to check if someone else has already submitted the same issue/request.
+CLOUDFLARE_API_TOKEN - Cloudflare API token with Pages edit permissions
+CLOUDFLARE_ACCOUNT_ID - Your Cloudflare account ID
+Release Process
+1. Create a Pull Request with your changes
+2. CI runs automatically (lint, typecheck, tests)
+3. CI must pass before merge is allowed
+4. Merge PR to main
+5. Auto-deploy to production (Cloudflare Pages)
+Safeguards:
 
-**What frameworks/libraries currently work on Bolt?**  
-Bolt.new supports most popular JavaScript frameworks and libraries. If it runs on StackBlitz, it will run on Bolt.new as well.
-
-**How can I add make sure my framework/project works well in bolt?**  
-We are excited to work with the JavaScript ecosystem to improve functionality in Bolt. Reach out to us via [hello@stackblitz.com](mailto:hello@stackblitz.com) to discuss how we can partner!
+Branch protection requires PR reviews
+All CI checks must pass
+Direct pushes to main are blocked
+Linear history enforced
+Attribution
+This project is based on Bolt.new by StackBlitz, licensed under MIT.
